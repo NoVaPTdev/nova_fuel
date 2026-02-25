@@ -1,0 +1,462 @@
+/* ============================================================
+   NOVA Fuel - Modern UI
+   Dark theme + accent #a3e635
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    background: transparent !important;
+    overflow: hidden;
+    width: 100%; height: 100%;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #e0e0e0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+*:focus { outline: none; }
+.hidden { display: none !important; }
+
+/* ============================================================
+   OVERLAY
+   ============================================================ */
+
+.nf-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* ============================================================
+   PANEL
+   ============================================================ */
+
+.nf-panel {
+    width: 360px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(15, 15, 20, 0.92);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+    animation: nfSlideIn 0.25s ease-out;
+}
+
+@keyframes nfSlideIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.nf-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nf-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nf-header-icon {
+    width: 36px; height: 36px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #a3e635, #65a30d);
+    box-shadow: 0 4px 12px rgba(163,230,53,0.25);
+    color: #000;
+}
+
+.nf-header-info h3 {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.nf-header-sub {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.4);
+}
+
+.nf-close-btn {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.nf-close-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+}
+
+/* ============================================================
+   GAUGE
+   ============================================================ */
+
+.nf-gauge-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 12px 0;
+}
+
+.nf-gauge {
+    position: relative;
+    width: 140px; height: 140px;
+}
+
+.nf-gauge-svg {
+    width: 100%; height: 100%;
+    transform: rotate(-90deg);
+}
+
+.nf-gauge-svg circle:last-child {
+    transition: stroke-dashoffset 0.4s ease-out, stroke 0.3s ease;
+}
+
+.nf-gauge-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nf-gauge-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.nf-gauge-label {
+    font-size: 9px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+}
+
+/* ============================================================
+   STATS ROW
+   ============================================================ */
+
+.nf-stats {
+    margin: 0 20px;
+    border-radius: 12px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    background: rgba(255,255,255,0.03);
+}
+
+.nf-stat {
+    text-align: center;
+}
+
+.nf-stat-bordered {
+    border-left: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.nf-stat-label {
+    display: block;
+    font-size: 9px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.nf-stat-label.nf-accent { color: #a3e635; opacity: 0.7; }
+
+.nf-stat-value {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+}
+
+.nf-stat-value.nf-accent { color: #a3e635; }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+.nf-section {
+    padding: 16px 20px 0 20px;
+}
+
+.nf-section-label {
+    display: block;
+    font-size: 9px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+}
+
+/* ============================================================
+   FUEL TYPE SELECTOR
+   ============================================================ */
+
+.nf-fuel-types {
+    display: flex;
+    gap: 8px;
+}
+
+.nf-fuel-type {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    cursor: pointer;
+    transition: all 0.15s;
+    color: rgba(255,255,255,0.3);
+}
+
+.nf-fuel-type svg { flex-shrink: 0; }
+
+.nf-ft-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.15s;
+}
+
+.nf-ft-price {
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.2);
+    transition: color 0.15s;
+}
+
+/* Regular active */
+.nf-fuel-type.active[data-type="0"] {
+    background: rgba(163, 230, 53, 0.08);
+    border-color: rgba(163, 230, 53, 0.25);
+}
+.nf-fuel-type.active[data-type="0"] svg { color: #a3e635; }
+.nf-fuel-type.active[data-type="0"] .nf-ft-name { color: #a3e635; }
+.nf-fuel-type.active[data-type="0"] .nf-ft-price { color: rgba(255,255,255,0.6); }
+
+/* Premium active */
+.nf-fuel-type.active[data-type="1"] {
+    background: rgba(56, 189, 248, 0.08);
+    border-color: rgba(56, 189, 248, 0.25);
+}
+.nf-fuel-type.active[data-type="1"] svg { color: #38bdf8; }
+.nf-fuel-type.active[data-type="1"] .nf-ft-name { color: #38bdf8; }
+.nf-fuel-type.active[data-type="1"] .nf-ft-price { color: rgba(255,255,255,0.6); }
+
+.nf-fuel-type:hover:not(.active) {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+}
+
+/* ============================================================
+   CUSTOM SLIDER
+   ============================================================ */
+
+.nf-slider-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.nf-slider-header .nf-section-label { margin-bottom: 0; }
+
+.nf-slider-val {
+    font-size: 13px;
+    font-weight: 600;
+    color: #a3e635;
+    font-variant-numeric: tabular-nums;
+}
+
+.nf-slider-wrap {
+    padding: 4px 0;
+}
+
+.nf-slider-track {
+    position: relative;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    cursor: pointer;
+}
+
+.nf-slider-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #a3e635, #84cc16);
+    box-shadow: 0 0 10px rgba(163,230,53,0.25);
+    width: 0%;
+    pointer-events: none;
+    transition: width 0.05s linear;
+}
+
+.nf-slider-thumb {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #a3e635;
+    box-shadow: 0 0 8px rgba(163,230,53,0.35);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: transform 0.1s ease, left 0.05s linear;
+}
+
+.nf-slider-thumb.dragging {
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* ============================================================
+   PRICE CARD
+   ============================================================ */
+
+.nf-price-card {
+    margin: 20px 20px 0 20px;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(163,230,53,0.08), rgba(101,163,13,0.04));
+    border: 1px solid rgba(163,230,53,0.12);
+}
+
+.nf-price-label {
+    display: block;
+    font-size: 9px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.nf-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.nf-price-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #a3e635;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.nf-price-sub {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.25);
+    margin-top: 4px;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.nf-buttons {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+}
+
+.nf-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0;
+    border-radius: 12px;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.nf-btn:active { transform: scale(0.97); }
+
+.nf-btn-secondary {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+}
+
+.nf-btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+.nf-btn-primary {
+    background: linear-gradient(135deg, #a3e635, #65a30d);
+    color: #0a0a0a;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(163,230,53,0.3);
+}
+
+.nf-btn-primary:hover {
+    box-shadow: 0 4px 24px rgba(163,230,53,0.45);
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}

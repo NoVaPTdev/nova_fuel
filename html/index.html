@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt" style="background-color: transparent !important;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>NOVA Fuel</title>
+    <link rel="stylesheet" href="css/style.css?v=13">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: transparent !important;">
+
+    <div id="fuelApp" class="nf-overlay hidden">
+        <div class="nf-panel">
+            <!-- Header -->
+            <div class="nf-header">
+                <div class="nf-header-left">
+                    <div class="nf-header-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                            <path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17"/>
+                            <path d="M15 22V11a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/>
+                            <path d="M3 22h12"/>
+                            <path d="M7 2v4"/><path d="M11 2v4"/>
+                        </svg>
+                    </div>
+                    <div class="nf-header-info">
+                        <h3 id="stationName">Posto de Gasolina</h3>
+                        <span class="nf-header-sub">Posto de Combustível</span>
+                    </div>
+                </div>
+                <button class="nf-close-btn" id="btnClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Fuel Gauge -->
+            <div class="nf-gauge-wrap">
+                <div class="nf-gauge">
+                    <svg viewBox="0 0 120 120" class="nf-gauge-svg">
+                        <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10" stroke-linecap="round"/>
+                        <circle id="gaugeCircle" cx="60" cy="60" r="54" fill="none" stroke="#a3e635" stroke-width="10" stroke-linecap="round"
+                            stroke-dasharray="339.29" stroke-dashoffset="339.29"/>
+                    </svg>
+                    <div class="nf-gauge-center">
+                        <span class="nf-gauge-value" id="gaugeValue">0%</span>
+                        <span class="nf-gauge-label">Nível do Tanque</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="nf-stats">
+                <div class="nf-stat">
+                    <span class="nf-stat-label">Atual</span>
+                    <span class="nf-stat-value" id="statCurrent">0%</span>
+                </div>
+                <div class="nf-stat nf-stat-bordered">
+                    <span class="nf-stat-label nf-accent">Adicionando</span>
+                    <span class="nf-stat-value nf-accent" id="statAdding">+0%</span>
+                </div>
+                <div class="nf-stat">
+                    <span class="nf-stat-label">Final</span>
+                    <span class="nf-stat-value" id="statFinal">0%</span>
+                </div>
+            </div>
+
+            <!-- Fuel Type Selector -->
+            <div class="nf-section">
+                <span class="nf-section-label">Tipo de Combustível</span>
+                <div class="nf-fuel-types">
+                    <button class="nf-fuel-type active" id="fuelTypeRegular" data-type="0">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                        </svg>
+                        <span class="nf-ft-name">Regular</span>
+                        <span class="nf-ft-price" id="priceRegular">$3.00/L</span>
+                    </button>
+                    <button class="nf-fuel-type" id="fuelTypePremium" data-type="1">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                        <span class="nf-ft-name">Premium</span>
+                        <span class="nf-ft-price" id="pricePremium">$5.00/L</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quantity Slider -->
+            <div class="nf-section">
+                <div class="nf-slider-header">
+                    <span class="nf-section-label">Quantidade</span>
+                    <span class="nf-slider-val" id="sliderLabel">0L</span>
+                </div>
+                <div class="nf-slider-wrap">
+                    <div class="nf-slider-track" id="sliderTrack">
+                        <div class="nf-slider-fill" id="sliderFill"></div>
+                        <div class="nf-slider-thumb" id="sliderThumb"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Price -->
+            <div class="nf-price-card">
+                <span class="nf-price-label">Total a Pagar</span>
+                <div class="nf-price-row">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="color:#a3e635;">
+                        <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                    <span class="nf-price-value" id="totalPrice">0.00</span>
+                </div>
+                <span class="nf-price-sub" id="pricePerLiterLabel">$3.00 por litro</span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="nf-buttons">
+                <button class="nf-btn nf-btn-secondary" id="btnFill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                    </svg>
+                    Encher
+                </button>
+                <button class="nf-btn nf-btn-primary" id="btnRefuel">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17"/>
+                        <path d="M15 22V11a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/>
+                        <path d="M3 22h12"/>
+                    </svg>
+                    Abastecer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js?v=13"></script>
+</body>
+</html>
